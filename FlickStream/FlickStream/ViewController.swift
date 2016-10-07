@@ -8,7 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController   {
+    
+    @IBOutlet var collectionView:UICollectionView?
+    @IBOutlet var userSearchField:UITextField?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,3 +26,28 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: UITextFieldDelegate{
+    
+}
+
+extension ViewController: UICollectionViewDelegate{
+    
+}
+
+
+extension ViewController: UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return 0;
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "flick", for: indexPath)
+        
+        
+        
+        return cell
+    }
+    
+}

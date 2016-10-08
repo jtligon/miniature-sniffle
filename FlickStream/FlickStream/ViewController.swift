@@ -12,7 +12,7 @@ class ViewController: UIViewController   {
     
     @IBOutlet var collectionView:UICollectionView?
     @IBOutlet var userSearchField:UITextField?
-    var imageUrls:Array<String> =  ["", ""]
+    var imageUrls:Array<String> =  ["https://upload.wikimedia.org/wikipedia/commons/e/e4/Stourhead_garden.jpg", ""]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ extension ViewController: UICollectionViewDataSource{
         }else{
             cell.imageView?.image = nil;
         }
-        cell.backgroundColor = UIColor.blue
+        cell.backgroundColor = UIColor.cyan
         
         return cell
     }

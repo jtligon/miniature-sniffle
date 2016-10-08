@@ -12,6 +12,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView:UIImageView?
     var imageURL:URL?
     
+    @IBOutlet weak var textLabel: UILabel!
     
     func getImageFromUrl(url:URL){
         self.imageURL = url

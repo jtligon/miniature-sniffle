@@ -69,15 +69,39 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="HnU-dc-eGE"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaE-th-paF">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="k16-Dt-mAX"/>
+                                </constraints>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="clearResults" destination="BYZ-38-t0r" eventType="touchUpInside" id="1gO-lc-fro"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBD-8J-mOM">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="dor-FK-Jx1"/>
+                                </constraints>
+                                <state key="normal" title="Get Pictures"/>
+                                <connections>
+                                    <action selector="getResults" destination="BYZ-38-t0r" eventType="touchUpInside" id="NSf-5K-MzZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lzb-dm-YUX" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="0Bf-6A-wM7"/>
                             <constraint firstItem="H2B-hn-Sbe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="5cu-yZ-ftc"/>
+                            <constraint firstItem="jaE-th-paF" firstAttribute="top" secondItem="H2B-hn-Sbe" secondAttribute="bottom" constant="19" id="7QB-Fg-AQK"/>
+                            <constraint firstItem="lzb-dm-YUX" firstAttribute="top" secondItem="jaE-th-paF" secondAttribute="bottom" constant="19" id="9MP-tC-xac"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lzb-dm-YUX" secondAttribute="bottom" constant="8" id="COm-xk-XPm"/>
+                            <constraint firstItem="pBD-8J-mOM" firstAttribute="top" secondItem="H2B-hn-Sbe" secondAttribute="bottom" constant="19" id="JcE-aq-g9C"/>
+                            <constraint firstItem="jaE-th-paF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PqH-zA-onf"/>
                             <constraint firstItem="lzb-dm-YUX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="Qzc-Ww-GCK"/>
+                            <constraint firstItem="lzb-dm-YUX" firstAttribute="top" secondItem="pBD-8J-mOM" secondAttribute="bottom" constant="19" id="Sd5-hc-AZ7"/>
                             <constraint firstAttribute="trailing" secondItem="lzb-dm-YUX" secondAttribute="trailing" constant="8" id="SjS-hv-XB1"/>
                             <constraint firstItem="H2B-hn-Sbe" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="bQG-Hp-FVM"/>
+                            <constraint firstItem="pBD-8J-mOM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hZH-fj-HHv"/>
                             <constraint firstItem="H2B-hn-Sbe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="mix-Uv-uFq"/>
                         </constraints>
                     </view>

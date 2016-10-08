@@ -25,11 +25,21 @@ class ViewController: UIViewController   {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func clearResults(){
+        self.imageUrls = [];
+        self.collectionView?.reloadData()
+    }
 
+    @IBAction func getResults(){
+        
+    }
 }
 
 extension ViewController: UITextFieldDelegate{
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.getResults();
+        return true
+    }
 }
 
 extension ViewController: UICollectionViewDelegate{

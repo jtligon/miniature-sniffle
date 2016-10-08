@@ -10,5 +10,15 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView:UIImageView?
+    var imageURL:URL?
+    
+    
+    func getImageFromUrl(url:URL){
+        self.imageURL = url
+        let data:Data = try! Data(contentsOf: url)
+        self.imageView?.image = UIImage(data: data)
+    }
     
 }
+
+

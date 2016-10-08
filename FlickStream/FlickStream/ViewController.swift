@@ -16,22 +16,22 @@ class ViewController: UIViewController   {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+            // set up the initial urlSession
     }
 
     @IBAction func clearResults(){
+        print("clearing results")
         self.imageUrls = [];
         self.collectionView?.reloadData()
     }
 
     @IBAction func getResults(){
+        print("getting pictures for listed user")
+        //add the user to the url path
         
+        //create the urlrequest
+     
+        //in the response, put each image url into the array
     }
 }
 
@@ -58,8 +58,12 @@ extension ViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "flick", for: indexPath)
-        print("cell indexpath=\(indexPath)" )
+        let cell:CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "flick", for: indexPath) as! CollectionViewCell
+        if let cellURL = URL(string: self.imageUrls[indexPath.row]){
+            cell.getImageFromUrl(url:cellURL)
+        }else{
+            cell.imageView?.image = nil;
+        }
         cell.backgroundColor = UIColor.blue
         
         return cell

@@ -11,27 +11,61 @@ import UIKit
 class ViewController: UIViewController   {
     
     @IBOutlet var collectionView:UICollectionView?
-    @IBOutlet var userSearchField:UITextField?
+    @IBOutlet var userSearchField:UITextField!
+    let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+    var dataTask: URLSessionDataTask?
+    
     var imageUrls:Array<String> =  ["https://upload.wikimedia.org/wikipedia/commons/e/e4/Stourhead_garden.jpg", ""]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-            // set up the initial urlSession
+        // set up the initial urlSession
     }
-
+    
     @IBAction func clearResults(){
+        
         print("clearing results")
         self.imageUrls = [];
         self.collectionView?.reloadData()
     }
-
+    
     @IBAction func getResults(){
-        print("getting pictures for listed user")
-        //add the user to the url path
+        if !userSearchField.text!.isEmpty {
+            
+            let expectedCharSet = CharacterSet.urlQueryAllowed
+            let username = userSearchField.text!.addingPercentEncoding(withAllowedCharacters:  expectedCharSet)!
+            
+//            print("getting pictures for listed user:\(username)")
+            
+            let urlString = "https://api.flickr.com/services/rest/?method=flickr.people.findByUsername" + "&api_key=\(Secrets.apiKey())&username=\(username)&format=json&nojsoncallback=1"
+            
+            let url = URL(string: urlString)!
+            let request = URLRequest(url: url)
+            
+            dataTask = defaultSession.dataTask(with: request, completionHandler: {
+                (data, response, error) in
+                
+                if let data = data,
+                    let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
+                    if let user = json?["user"] as? [String:Any]{
+                        if let userid = user["id"] as? String{
+                            self.getPublicPhotos(userid: userid)
+                        }
+                    }
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+            
+            dataTask?.resume()
+            
+        }
+    }
+    
+    func getPublicPhotos(userid:String){
         
-        //create the urlrequest
-     
-        //in the response, put each image url into the array
+       let urlString =  "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos" + "&api_key=\(Secrets.apiKey())&user_id=\(userid)&format=json&nojsoncallback=1"
+        
     }
 }
 
@@ -43,7 +77,7 @@ extension ViewController: UITextFieldDelegate{
 }
 
 extension ViewController: UICollectionViewDelegate{
- 
+    
 }
 
 

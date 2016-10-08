@@ -26,6 +26,7 @@ class ViewController: UIViewController   {
         
         print("clearing results")
         self.imageUrls = [];
+        self.userSearchField.text = ""
         self.collectionView?.reloadData()
     }
     
@@ -45,12 +46,13 @@ class ViewController: UIViewController   {
             dataTask = defaultSession.dataTask(with: request, completionHandler: {
                 (data, response, error) in
                 
-                //this is lame, need to go back and make a custom object with a constructor.
                 if let data = data,
                     let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
-                    if let user = json?["user"] as? [String:Any]{
-                        if let userid = user["id"] as? String{
-                            self.getPublicPhotos(userid: userid)
+                    if let userResponse = IDResponse(json: json!){
+                        if userResponse.status == .ok{
+                            print("looking for user \(userResponse.id!)")
+                        }else{
+                            print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
                         }
                     }
                 } else {

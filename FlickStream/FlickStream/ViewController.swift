@@ -45,6 +45,7 @@ class ViewController: UIViewController   {
             dataTask = defaultSession.dataTask(with: request, completionHandler: {
                 (data, response, error) in
                 
+                //this is lame, need to go back and make a custom object with a constructor.
                 if let data = data,
                     let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
                     if let user = json?["user"] as? [String:Any]{

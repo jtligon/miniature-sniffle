@@ -15,6 +15,7 @@
 		7C0B1CF91DA85D250085DC29 /* FlickStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B1CF81DA85D250085DC29 /* FlickStreamTests.swift */; };
 		7C0B1D041DA865B80085DC29 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B1D031DA865B80085DC29 /* CollectionViewCell.swift */; };
 		7C0F08101DA88FCD005763E6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F080F1DA88FCD005763E6 /* Secrets.swift */; };
+		7C0F08121DA92456005763E6 /* IDResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F08111DA92456005763E6 /* IDResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		7C0B1CFA1DA85D250085DC29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C0B1D031DA865B80085DC29 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		7C0F080F1DA88FCD005763E6 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		7C0F08111DA92456005763E6 /* IDResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +83,10 @@
 		7C0B1CE21DA85D250085DC29 /* FlickStream */ = {
 			isa = PBXGroup;
 			children = (
+				7C0F08141DA92475005763E6 /* Views */,
+				7C0F08131DA92467005763E6 /* Responses */,
 				7C0B1CE31DA85D250085DC29 /* AppDelegate.swift */,
-				7C0B1CE51DA85D250085DC29 /* ViewController.swift */,
 				7C0F080F1DA88FCD005763E6 /* Secrets.swift */,
-				7C0B1D031DA865B80085DC29 /* CollectionViewCell.swift */,
 				7C0B1CE71DA85D250085DC29 /* Main.storyboard */,
 				7C0B1CEA1DA85D250085DC29 /* Assets.xcassets */,
 				7C0B1CEC1DA85D250085DC29 /* LaunchScreen.storyboard */,
@@ -100,6 +102,23 @@
 				7C0B1CFA1DA85D250085DC29 /* Info.plist */,
 			);
 			path = FlickStreamTests;
+			sourceTree = "<group>";
+		};
+		7C0F08131DA92467005763E6 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				7C0F08111DA92456005763E6 /* IDResponse.swift */,
+			);
+			name = Responses;
+			sourceTree = "<group>";
+		};
+		7C0F08141DA92475005763E6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7C0B1D031DA865B80085DC29 /* CollectionViewCell.swift */,
+				7C0B1CE51DA85D250085DC29 /* ViewController.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C0B1CE61DA85D250085DC29 /* ViewController.swift in Sources */,
+				7C0F08121DA92456005763E6 /* IDResponse.swift in Sources */,
 				7C0F08101DA88FCD005763E6 /* Secrets.swift in Sources */,
 				7C0B1CE41DA85D250085DC29 /* AppDelegate.swift in Sources */,
 				7C0B1D041DA865B80085DC29 /* CollectionViewCell.swift in Sources */,

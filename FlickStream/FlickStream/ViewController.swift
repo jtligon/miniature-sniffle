@@ -12,9 +12,11 @@ class ViewController: UIViewController   {
     
     @IBOutlet var collectionView:UICollectionView?
     @IBOutlet var userSearchField:UITextField?
+    var imageUrls:Array<String> =  ["", ""]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -27,25 +29,28 @@ class ViewController: UIViewController   {
 }
 
 extension ViewController: UITextFieldDelegate{
-    
+
 }
 
 extension ViewController: UICollectionViewDelegate{
-    
+ 
 }
 
 
 extension ViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return 0;
+        return self.imageUrls.count;
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "flick", for: indexPath)
-        
-        
+        print("cell indexpath=\(indexPath)" )
+        cell.backgroundColor = UIColor.blue
         
         return cell
     }

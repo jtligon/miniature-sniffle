@@ -14,6 +14,7 @@
 		7C0B1CEE1DA85D250085DC29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0B1CEC1DA85D250085DC29 /* LaunchScreen.storyboard */; };
 		7C0B1CF91DA85D250085DC29 /* FlickStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B1CF81DA85D250085DC29 /* FlickStreamTests.swift */; };
 		7C0B1D041DA865B80085DC29 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B1D031DA865B80085DC29 /* CollectionViewCell.swift */; };
+		7C0F08101DA88FCD005763E6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F080F1DA88FCD005763E6 /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		7C0B1CF81DA85D250085DC29 /* FlickStreamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickStreamTests.swift; sourceTree = "<group>"; };
 		7C0B1CFA1DA85D250085DC29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C0B1D031DA865B80085DC29 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		7C0F080F1DA88FCD005763E6 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				7C0B1CE31DA85D250085DC29 /* AppDelegate.swift */,
 				7C0B1CE51DA85D250085DC29 /* ViewController.swift */,
+				7C0F080F1DA88FCD005763E6 /* Secrets.swift */,
 				7C0B1D031DA865B80085DC29 /* CollectionViewCell.swift */,
 				7C0B1CE71DA85D250085DC29 /* Main.storyboard */,
 				7C0B1CEA1DA85D250085DC29 /* Assets.xcassets */,
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C0B1CE61DA85D250085DC29 /* ViewController.swift in Sources */,
+				7C0F08101DA88FCD005763E6 /* Secrets.swift in Sources */,
 				7C0B1CE41DA85D250085DC29 /* AppDelegate.swift in Sources */,
 				7C0B1D041DA865B80085DC29 /* CollectionViewCell.swift in Sources */,
 			);
@@ -414,6 +418,7 @@
 				7C0B1CFF1DA85D250085DC29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7C0B1D001DA85D250085DC29 /* Build configuration list for PBXNativeTarget "FlickStreamTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +427,7 @@
 				7C0B1D021DA85D250085DC29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

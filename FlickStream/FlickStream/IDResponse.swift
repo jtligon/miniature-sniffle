@@ -53,24 +53,31 @@ struct IDResponse: Any {
 
 extension IDResponse {
     init?(json:[String:Any]){
-        guard let status = Status(rawValue:(json["stat"] as? String )) ,
-                let userNameJson = json["user"] as? [String:Any]
-                let id = userNameJson["id"] as? String,
-                let nsid = userNameJson["nsid"] as? String
-        else{
-            
-           guard  let code = json["code"] as? Int,
-            let message = json["message"] as? String
+        guard let userNameJson = json["user"] as? [String:Any],
+            let id = userNameJson["id"] as? String,
+            let nsid = userNameJson["nsid"] as? String
             else{
-                return nil
-            }
-                self.status = status
-            self.code = code
-            self.message = message
+                guard  let code = json["code"] as? Int,
+                    let message = json["message"] as? String
+                    else{
+                        return nil
+                }
+                
+                let statusText = json["stat"] as! String
+                self.status = Status(rawValue: statusText)!
+                self.code = code
+                self.message = message
+                self.id = nil
+                self.nsid = nil
+                return
         }
+        
+        let statusText = json["stat"] as! String
+        self.status = Status(rawValue: statusText)!
         self.id = id
         self.nsid = nsid
-        
+        self.message = nil
+        self.code = nil
     }
 }
 

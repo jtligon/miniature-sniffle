@@ -8,25 +8,18 @@
 
 import UIKit
 import SDWebImage
-import QuartzCore
 
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView:UIImageView?
     var imageURL:URL?
     @IBOutlet weak var textLabel: UILabel!
     
-    func getImageFromUrl(url:URL){
-        self.imageURL = url
-        
-        self.imageView?.layer.cornerRadius = 25.0
-        self.imageView?.sd_setImage(with:url)
-                                    
-//                                    completed:{
-//        (imageView, error, cacheType, url) in
-//            //can use this fun completion later
-//        })
+    override func awakeFromNib() {
+        self.layer.cornerRadius = 10.0;
+//        self.layer.shadowRadius = 5;
+//        self.layer.shadowOffset = CGSize(width: 3, height: 3)
+//        self.layer.shadowColor = UIColor.black.cgColor
     }
-    
 }
 
 

@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController   {
     
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet var collectionView:UICollectionView?
     @IBOutlet var userSearchField:UITextField!
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
@@ -21,6 +22,10 @@ class ViewController: UIViewController   {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageLabel.text = ""
+        messageLabel.layer.cornerRadius = 5.0
+        //give the search field focus when we land on this viewController.
+        userSearchField.becomeFirstResponder()
     }
     
     @IBAction func clearResults(){
@@ -63,7 +68,10 @@ class ViewController: UIViewController   {
                             self.getPublicPhotos(userid: userResponse.id!)
                         }else{
                             //response errors here
-                            print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
+                            DispatchQueue.main.async{
+                                self.sendMessage(content: userResponse.message!)
+                                print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
+                            }
                         }
                     }
                 } else {
@@ -103,17 +111,22 @@ class ViewController: UIViewController   {
     }
 }
 
+extension ViewController{
+    func sendMessage(content:String){
+        self.messageLabel.text = content
+        self.messageLabel.alpha = 100.0
+        UIView.animate(withDuration: 2.0, animations: {
+            self.messageLabel.alpha = 0.0
+        })
+    }
+}
+
 extension ViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.getResults();
         return true
     }
 }
-
-extension ViewController: UICollectionViewDelegate{
-    
-}
-
 
 extension ViewController: UICollectionViewDataSource{
     
@@ -128,7 +141,10 @@ extension ViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "flick", for: indexPath) as! CollectionViewCell
         if let cellURL = self.imageUrls[indexPath.row]{
-            cell.getImageFromUrl(url:cellURL)
+            cell.imageView?.sd_setImage(with:cellURL, completed:{
+                (_,_,_,_) in
+                self.collectionView?.collectionViewLayout.invalidateLayout()
+            })
         }else{
             cell.imageView?.image = nil;
         }

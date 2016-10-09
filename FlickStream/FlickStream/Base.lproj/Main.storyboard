@@ -21,32 +21,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lzb-dm-YUX">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <color key="backgroundColor" white="0.89621310763888884" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="N7M-5b-co3">
-                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="itemSize" width="60" height="60"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="flick" id="Zb1-jA-a8V" customClass="CollectionViewCell" customModule="FlickStream" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" reuseIdentifier="flick" id="Zb1-jA-a8V" customClass="CollectionViewCell" customModule="FlickStream" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pgq-4T-TYA"/>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="0.70054796006944442" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="Pgq-4T-TYA" secondAttribute="bottom" id="UDc-Rp-xWa"/>
                                             <constraint firstAttribute="trailing" secondItem="Pgq-4T-TYA" secondAttribute="trailing" id="kVu-mw-ssG"/>
                                             <constraint firstItem="Pgq-4T-TYA" firstAttribute="top" secondItem="Zb1-jA-a8V" secondAttribute="top" id="lkG-UW-AWm"/>
                                             <constraint firstItem="Pgq-4T-TYA" firstAttribute="leading" secondItem="Zb1-jA-a8V" secondAttribute="leading" id="xpU-rG-t8i"/>
                                         </constraints>
-                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <connections>
                                             <outlet property="imageView" destination="Pgq-4T-TYA" id="Gsf-si-rXW"/>
                                         </connections>
@@ -86,6 +85,14 @@
                                     <action selector="getResults" destination="BYZ-38-t0r" eventType="touchUpInside" id="NSf-5K-MzZ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error Message Text Label " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="djn-gu-aaT">
+                                <frame key="frameInset" minX="16" minY="66" width="146" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93904619746738005" green="0.89013671875" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -106,6 +113,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="lzb-dm-YUX" id="oAp-2y-Sby"/>
+                        <outlet property="messageLabel" destination="djn-gu-aaT" id="xhs-cX-PG4"/>
                         <outlet property="userSearchField" destination="H2B-hn-Sbe" id="nWP-Gd-pUu"/>
                     </connections>
                 </viewController>

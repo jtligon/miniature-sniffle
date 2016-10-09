@@ -49,6 +49,7 @@ class ViewController: UIViewController   {
                     let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
                     if let userResponse = IDResponse(json: json!){
                         if userResponse.status == .ok{
+                            print("good response:\(userResponse)")
                             self.getPublicPhotos(userid: userResponse.id!)
                         }else{
                             print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
@@ -63,8 +64,8 @@ class ViewController: UIViewController   {
     }
     
     func getPublicPhotos(userid:String){
-        let safeUserString = userid.addingPercentEncoding(withAllowedCharacters: expectedCharSet)
-       let urlString =  "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos" + "&api_key=\(Secrets.apiKey())&user_id=\(safeUserString)&format=json&nojsoncallback=1"
+//        let safeUserString = userid.addingPercentEncoding(withAllowedCharacters: expectedCharSet)
+       let urlString =  "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos" + "&api_key=\(Secrets.apiKey())&user_id=\(userid)&format=json&nojsoncallback=1"
         let url = URL(string:urlString)!
         let request = URLRequest(url: url)
         dataTask = defaultSession.dataTask(with: request, completionHandler:{
@@ -73,13 +74,14 @@ class ViewController: UIViewController   {
             let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]{
                 if let publicResponse = PublicPhotoResponse(json:json!){
                     if publicResponse.status == .ok{
-                        
+                        print("good response:\(publicResponse)")
                     }
                 }
+            }else{
+                print(error?.localizedDescription)
             }
         })
-        
-        
+        dataTask?.resume()
     }
 }
 

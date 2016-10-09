@@ -46,10 +46,11 @@ struct PublicPhotoResponse: Any {
 
 extension PublicPhotoResponse {
     init?(json:[String:Any]){
-        guard let page = json["page"] as? Int,
-            let pages = json["pages"] as? Int,
-            let perpage = json["perpage"] as? Int,
-            let photoArray = json["photo"] as? [[String:Any]]
+        guard let photosJson = json["photos"] as? [String:Any],
+            let page = photosJson["page"] as? Int,
+            let pages = photosJson["pages"] as? Int,
+            let perpage = photosJson["perpage"] as? Int,
+            let photoArray = photosJson["photo"] as? [[String:Any]]
             else{
                 guard  let code = json["code"] as? Int,
                     let message = json["message"] as? String

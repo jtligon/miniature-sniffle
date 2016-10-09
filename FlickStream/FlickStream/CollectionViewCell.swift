@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet var imageView:UIImageView?
@@ -16,9 +17,8 @@ class CollectionViewCell: UICollectionViewCell {
     
     func getImageFromUrl(url:URL){
         self.imageURL = url
-        let data:Data = try! Data(contentsOf: url)
-        self.imageView?.image = UIImage(data: data)
-        self.imageView?.contentMode = .scaleAspectFit
+        
+        self.imageView?.sd_setImage(with: url)
     }
     
 }

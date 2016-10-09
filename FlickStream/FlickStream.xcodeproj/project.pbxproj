@@ -17,6 +17,7 @@
 		7C0F08101DA88FCD005763E6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F080F1DA88FCD005763E6 /* Secrets.swift */; };
 		7C0F08121DA92456005763E6 /* IDResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F08111DA92456005763E6 /* IDResponse.swift */; };
 		7C0F08161DA97CE4005763E6 /* PublicPhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F08151DA97CE4005763E6 /* PublicPhotoResponse.swift */; };
+		7C0F08181DA9DD04005763E6 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F08171DA9DD04005763E6 /* PhotoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		7C0F080F1DA88FCD005763E6 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		7C0F08111DA92456005763E6 /* IDResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDResponse.swift; sourceTree = "<group>"; };
 		7C0F08151DA97CE4005763E6 /* PublicPhotoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicPhotoResponse.swift; sourceTree = "<group>"; };
+		7C0F08171DA9DD04005763E6 /* PhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				7C0F08111DA92456005763E6 /* IDResponse.swift */,
 				7C0F08151DA97CE4005763E6 /* PublicPhotoResponse.swift */,
+				7C0F08171DA9DD04005763E6 /* PhotoModel.swift */,
 			);
 			name = Responses;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				7C0F08121DA92456005763E6 /* IDResponse.swift in Sources */,
 				7C0F08161DA97CE4005763E6 /* PublicPhotoResponse.swift in Sources */,
 				7C0F08101DA88FCD005763E6 /* Secrets.swift in Sources */,
+				7C0F08181DA9DD04005763E6 /* PhotoModel.swift in Sources */,
 				7C0B1CE41DA85D250085DC29 /* AppDelegate.swift in Sources */,
 				7C0B1D041DA865B80085DC29 /* CollectionViewCell.swift in Sources */,
 			);

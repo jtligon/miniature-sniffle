@@ -8,10 +8,14 @@
 
 
 /* good empty response
- { "photos": { "page": 1, "pages": 0, "perpage": 100, "total": 0,
- "photo": [
- 
- ] }, "stat": "ok" }
+ { 
+ "photos": { 
+    "page": 1, 
+    "pages": 0, 
+    "perpage": 100, 
+    "total": 0,
+    "photo": [] }, 
+ "stat": "ok" }
  */
 
 /* good single response
@@ -26,6 +30,12 @@
  */
 import UIKit
 
-class PublicPhotoResponse: Any {
+struct PublicPhotoResponse: Any {
+    let status:Status
+    let page:Int?
+    let pages:Int?
+    let perpage:Int?
+    let photo:[Int]
 
+    
 }

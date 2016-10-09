@@ -36,12 +36,12 @@ enum SerializationError: Error {
  ])
  */
 
-
+enum Status:String{
+    case fail, ok
+}
 
 struct IDResponse: Any {
-    enum Status:String{
-        case fail, ok
-    }
+ 
     
     let status:Status
     let id:String?

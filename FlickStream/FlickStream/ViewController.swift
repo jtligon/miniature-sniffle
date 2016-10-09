@@ -17,7 +17,7 @@ class ViewController: UIViewController   {
     
     let expectedCharSet = CharacterSet.urlQueryAllowed
     
-    var imageUrls:Array<String> =  ["https://upload.wikimedia.org/wikipedia/commons/e/e4/Stourhead_garden.jpg", ""]
+    var imageUrls = [URL?]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class ViewController: UIViewController   {
     }
     
     func getPublicPhotos(userid:String){
-//        let safeUserString = userid.addingPercentEncoding(withAllowedCharacters: expectedCharSet)
+
        let urlString =  "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos" + "&api_key=\(Secrets.apiKey())&user_id=\(userid)&format=json&nojsoncallback=1"
         let url = URL(string:urlString)!
         let request = URLRequest(url: url)
@@ -74,7 +74,13 @@ class ViewController: UIViewController   {
             let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]{
                 if let publicResponse = PublicPhotoResponse(json:json!){
                     if publicResponse.status == .ok{
-                        print("good response:\(publicResponse)")
+                        // create the image urls from the response,
+                        self.imageUrls = publicResponse.photo.map{    $0.url() }
+                        //then reload the collectionView on the main thread
+                        DispatchQueue.main.async {
+                            self.collectionView?.reloadData()
+                        }
+
                     }
                 }
             }else{
@@ -109,12 +115,11 @@ extension ViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "flick", for: indexPath) as! CollectionViewCell
-        if let cellURL = URL(string: self.imageUrls[indexPath.row]){
+        if let cellURL = self.imageUrls[indexPath.row]{
             cell.getImageFromUrl(url:cellURL)
         }else{
             cell.imageView?.image = nil;
         }
-        cell.backgroundColor = UIColor.cyan
         
         return cell
     }

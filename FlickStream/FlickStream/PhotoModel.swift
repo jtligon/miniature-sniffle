@@ -58,4 +58,11 @@ extension PhotoModel{
         self.isfriend = isfriend
         self.isfamily = isfamily
     }
+    
+    func url() -> (URL?){
+        /*https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg*/
+        return  URL(string: "https://farm\(self.farm).staticflickr.com/\(self.server)/\(self.id)_\(self.secret)_t.jpg")
+        
+        
+    }
 }

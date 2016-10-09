@@ -18,6 +18,7 @@ class CollectionViewCell: UICollectionViewCell {
         self.imageURL = url
         let data:Data = try! Data(contentsOf: url)
         self.imageView?.image = UIImage(data: data)
+        self.imageView?.contentMode = .scaleAspectFit
     }
     
 }

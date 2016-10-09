@@ -24,6 +24,8 @@ class ViewController: UIViewController   {
         super.viewDidLoad()
         messageLabel.text = ""
         messageLabel.layer.cornerRadius = 5.0
+        self.collectionView?.layer.cornerRadius = 10
+        
         //give the search field focus when we land on this viewController.
         userSearchField.becomeFirstResponder()
     }

@@ -42,10 +42,10 @@ enum Status:String{
 
 struct IDResponse: Any {
  
-    
-    let status:Status
     let id:String?
     let nsid:String?
+    
+    let status:Status
     let code:Int?
     let message:String?
     

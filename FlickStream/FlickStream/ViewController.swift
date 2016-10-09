@@ -15,6 +15,8 @@ class ViewController: UIViewController   {
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     var dataTask: URLSessionDataTask?
     
+    let expectedCharSet = CharacterSet.urlQueryAllowed
+    
     var imageUrls:Array<String> =  ["https://upload.wikimedia.org/wikipedia/commons/e/e4/Stourhead_garden.jpg", ""]
     
     override func viewDidLoad() {
@@ -33,10 +35,7 @@ class ViewController: UIViewController   {
     @IBAction func getResults(){
         if !userSearchField.text!.isEmpty {
             
-            let expectedCharSet = CharacterSet.urlQueryAllowed
             let username = userSearchField.text!.addingPercentEncoding(withAllowedCharacters:  expectedCharSet)!
-            
-//            print("getting pictures for listed user:\(username)")
             
             let urlString = "https://api.flickr.com/services/rest/?method=flickr.people.findByUsername" + "&api_key=\(Secrets.apiKey())&username=\(username)&format=json&nojsoncallback=1"
             
@@ -50,7 +49,7 @@ class ViewController: UIViewController   {
                     let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
                     if let userResponse = IDResponse(json: json!){
                         if userResponse.status == .ok{
-                            print("looking for user \(userResponse.id!)")
+                            self.getPublicPhotos(userid: userResponse.id!)
                         }else{
                             print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
                         }
@@ -59,15 +58,27 @@ class ViewController: UIViewController   {
                     print(error?.localizedDescription)
                 }
             })
-            
             dataTask?.resume()
-            
         }
     }
     
     func getPublicPhotos(userid:String){
+        let safeUserString = userid.addingPercentEncoding(withAllowedCharacters: expectedCharSet)
+       let urlString =  "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos" + "&api_key=\(Secrets.apiKey())&user_id=\(safeUserString)&format=json&nojsoncallback=1"
+        let url = URL(string:urlString)!
+        let request = URLRequest(url: url)
+        dataTask = defaultSession.dataTask(with: request, completionHandler:{
+        (data, response, error) in
+            if let data = data,
+            let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]{
+                if let publicResponse = PublicPhotoResponse(json:json!){
+                    if publicResponse.status == .ok{
+                        
+                    }
+                }
+            }
+        })
         
-       let urlString =  "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos" + "&api_key=\(Secrets.apiKey())&user_id=\(userid)&format=json&nojsoncallback=1"
         
     }
 }

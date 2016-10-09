@@ -37,31 +37,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Could Not Load Image" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIx-lP-UtC">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="70" id="M8m-Le-dky"/>
-                                                        <constraint firstAttribute="width" constant="84" id="o9N-gC-gFt"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pgq-4T-TYA"/>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="TIx-lP-UtC" firstAttribute="centerX" secondItem="Zb1-jA-a8V" secondAttribute="centerX" id="7YE-PA-zx6"/>
-                                            <constraint firstItem="TIx-lP-UtC" firstAttribute="centerY" secondItem="Zb1-jA-a8V" secondAttribute="centerY" id="8G5-om-uIy"/>
                                             <constraint firstAttribute="bottom" secondItem="Pgq-4T-TYA" secondAttribute="bottom" id="UDc-Rp-xWa"/>
                                             <constraint firstAttribute="trailing" secondItem="Pgq-4T-TYA" secondAttribute="trailing" id="kVu-mw-ssG"/>
                                             <constraint firstItem="Pgq-4T-TYA" firstAttribute="top" secondItem="Zb1-jA-a8V" secondAttribute="top" id="lkG-UW-AWm"/>
                                             <constraint firstItem="Pgq-4T-TYA" firstAttribute="leading" secondItem="Zb1-jA-a8V" secondAttribute="leading" id="xpU-rG-t8i"/>
                                         </constraints>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                        <size key="customSize" width="100" height="100"/>
                                         <connections>
                                             <outlet property="imageView" destination="Pgq-4T-TYA" id="Gsf-si-rXW"/>
-                                            <outlet property="textLabel" destination="TIx-lP-UtC" id="sFu-m0-STc"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -8,17 +8,23 @@
 
 import UIKit
 import SDWebImage
+import QuartzCore
 
 class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet var imageView:UIImageView?
+    @IBOutlet weak var imageView:UIImageView?
     var imageURL:URL?
-    
     @IBOutlet weak var textLabel: UILabel!
     
     func getImageFromUrl(url:URL){
         self.imageURL = url
         
-        self.imageView?.sd_setImage(with: url)
+        self.imageView?.layer.cornerRadius = 25.0
+        self.imageView?.sd_setImage(with:url)
+                                    
+//                                    completed:{
+//        (imageView, error, cacheType, url) in
+//            //can use this fun completion later
+//        })
     }
     
 }

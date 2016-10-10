@@ -41,7 +41,7 @@ class ViewController: UIViewController   {
     @IBAction func getResults(){
         //if user search is empty, clear the results, otherwise
         if userSearchField.text!.isEmpty {
-           self.clearResults()
+            self.clearResults()
         }else{
             //escape the characters needed
             let username = userSearchField.text!.addingPercentEncoding(withAllowedCharacters:  expectedCharSet)!
@@ -86,23 +86,28 @@ class ViewController: UIViewController   {
     }
     
     func getPublicPhotos(userid:String){
-
-       let urlString =  "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos" + "&api_key=\(Secrets.apiKey())&user_id=\(userid)&format=json&nojsoncallback=1"
+        
+        let urlString =  "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos" + "&api_key=\(Secrets.apiKey())&user_id=\(userid)&format=json&nojsoncallback=1"
         let url = URL(string:urlString)!
         let request = URLRequest(url: url)
         dataTask = defaultSession.dataTask(with: request, completionHandler:{
-        (data, response, error) in
+            (data, response, error) in
             if let data = data,
-            let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]{
+                let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]{
                 if let publicResponse = PublicPhotoResponse(json:json!){
                     if publicResponse.status == .ok{
                         // create the image urls from the response,
                         self.imageUrls = publicResponse.photo.map{    $0.url() }
-                        //then reload the collectionView on the main thread
                         DispatchQueue.main.async {
+                            if self.imageUrls.count == 0{
+                                self.sendMessage(content: "User found with no public photos!")
+                            }
+                            //then reload the collectionView on the main thread
                             self.collectionView?.reloadData()
                         }
-
+                        
+                    } else {
+                        self.sendMessage(content: publicResponse.message!)
                     }
                 }
             }else{

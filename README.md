@@ -3,6 +3,7 @@ Simple Flickr Client
 
 ##Thoughts on process
 I made a few more commits than I normally would so that everyone could see my process of 
+
 1. make it work 
 2. make it work better
 3. make it look better

@@ -93,13 +93,13 @@ class ViewController: UIViewController   {
     func getPublicPhotos(userid:String){
         
         let urlString =  "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos" + "&api_key=\(Secrets.apiKey())&user_id=\(userid)&format=json&nojsoncallback=1"
-        let url = URL(string:urlString)!
+        if let url = URL(string:urlString) {
         let request = URLRequest(url: url)
         dataTask = defaultSession.dataTask(with: request, completionHandler:{
             (data, response, error) in
             if let data = data,
-                let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]{
-                if let publicResponse = PublicPhotoResponse(json:json!){
+                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]{
+                if let publicResponse = PublicPhotoResponse(json:json){
                     if publicResponse.status == .ok{
                         // create the image urls from the response,
                         self.imageUrls = publicResponse.photo.map{    $0.url() }
@@ -120,6 +120,7 @@ class ViewController: UIViewController   {
             }
         })
         dataTask?.resume()
+    }
     }
 }
 

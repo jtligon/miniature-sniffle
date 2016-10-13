@@ -45,19 +45,19 @@ struct PublicPhotoResponse: Any {
 }
 
 extension PublicPhotoResponse {
-    init?(json:[String:Any]){
-        guard let photosJson = json["photos"] as? [String:Any],
+    init?(json:[String:Any]?){
+        guard let photosJson = json?["photos"] as? [String:Any],
             let page = photosJson["page"] as? Int,
             let pages = photosJson["pages"] as? Int,
             let perpage = photosJson["perpage"] as? Int,
             let photoArray = photosJson["photo"] as? [[String:Any]]
             else{
-                guard  let code = json["code"] as? Int,
-                    let message = json["message"] as? String
+                guard  let code = json?["code"] as? Int,
+                    let message = json?["message"] as? String
                     else{
                         return nil
                 }
-                let statusText = json["stat"] as! String
+                let statusText = json?["stat"] as? String ?? ""
                 self.status = Status(rawValue: statusText)!
                 self.code = code
                 self.message = message
@@ -66,7 +66,7 @@ extension PublicPhotoResponse {
                 self.perpage = nil
                 return
         }
-        let statusText = json["stat"] as! String
+        let statusText = json?["stat"] as? String ?? ""
         self.status = Status(rawValue: statusText)!
         self.code = nil
         self.message = nil

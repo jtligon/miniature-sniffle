@@ -40,21 +40,17 @@ class ViewController: UIViewController   {
     
     @IBAction func getResults(){
         //if user search is empty, clear the results, otherwise
-        let userSearchText  = userSearchField?.text ?? ""
-            if (userSearchText.isEmpty) {
-                self.clearResults()
-            }else{
-                //escape the characters needed
-                let username = userSearchText.addingPercentEncoding(withAllowedCharacters:  expectedCharSet)
-                
-                // TODO: better constructor for the url components. quick and dirty
-                let urlString = "https://api.flickr.com/services/rest/?method=flickr.people.findByUsername" + "&api_key=\(Secrets.apiKey())&username=\(username)&format=json&nojsoncallback=1"
-                
-                guard let url = URL(string: urlString)
-                    else{
-                        self.sendMessage(content: "couldn't create a url from the username!")
-                        return
-                }
+        let userSearchText:String  = userSearchField?.text ?? ""
+        if (userSearchText.isEmpty) {
+            self.clearResults()
+        }else{
+            //escape the characters needed
+            let username:String = userSearchText.addingPercentEncoding(withAllowedCharacters:  expectedCharSet) ?? ""
+            
+            // TODO: better constructor for the url components. quick and dirty
+            let urlString = "https://api.flickr.com/services/rest/?method=flickr.people.findByUsername" + "&api_key=\(Secrets.apiKey())&username=\(username)&format=json&nojsoncallback=1"
+            
+            if let url = URL(string: urlString){
                 let request = URLRequest(url: url)
                 
                 //if one exists already, cancel it and release it before we create a new one.
@@ -68,34 +64,30 @@ class ViewController: UIViewController   {
                     (data, response, error) in
                     
                     if let data = data{
-//                        let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                             //get rid of the forced unwrapping to fail more gracefully
-                        if let userResponse = IDResponse(json: json) {
-                            if userResponse.status == .ok{
-                                print("good response:\(userResponse)")
-                                //move to a new func for next flickr call
-                                self.getPublicPhotos(userid: userResponse.id!)
-                            }else{
-                                //response errors here
-                                DispatchQueue.main.async{
-                                    self.sendMessage(content: userResponse.message!)
-                                    print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
+                            if let userResponse = IDResponse(json: json) {
+                                if userResponse.status == .ok{
+                                    print("good response:\(userResponse)")
+                                    //move to a new func for next flickr call
+                                    self.getPublicPhotos(userid: userResponse.id!)
+                                }else{
+                                    //response errors here
+                                    DispatchQueue.main.async{
+                                        self.sendMessage(content: userResponse.message!)
+                                        print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
+                                    }
                                 }
                             }
-                            
-                            }
-                    } else {
-                        //json parsing errors here
-                        print(error?.localizedDescription)
+                        } else {
+                            //json parsing errors here
+                            print(error?.localizedDescription)
                         }
                     }
                 })
                 dataTask?.resume() //kick off the task
-                
             }
-        
+        }
     }
     
     func getPublicPhotos(userid:String){

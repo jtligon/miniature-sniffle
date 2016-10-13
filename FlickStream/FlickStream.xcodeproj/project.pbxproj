@@ -22,6 +22,8 @@
 		7C0F08181DA9DD04005763E6 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F08171DA9DD04005763E6 /* PhotoModel.swift */; };
 		7C3F08F51DAFCB6400A290CC /* PhotoModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F08F41DAFCB6400A290CC /* PhotoModelTest.swift */; };
 		7C3F08F61DAFD1B800A290CC /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0F08171DA9DD04005763E6 /* PhotoModel.swift */; };
+		7C3F08F81DAFE64200A290CC /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F08F71DAFE64200A290CC /* ViewControllerTests.swift */; };
+		7C3F08F91DAFE68D00A290CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0B1CE51DA85D250085DC29 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,7 @@
 		7C0F08151DA97CE4005763E6 /* PublicPhotoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicPhotoResponse.swift; sourceTree = "<group>"; };
 		7C0F08171DA9DD04005763E6 /* PhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		7C3F08F41DAFCB6400A290CC /* PhotoModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoModelTest.swift; sourceTree = "<group>"; };
+		7C3F08F71DAFE64200A290CC /* ViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		801F47A18E64AEDA9C78F803 /* Pods-FlickStreamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickStreamTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickStreamTests/Pods-FlickStreamTests.release.xcconfig"; sourceTree = "<group>"; };
 		8F3B73BEB1DE509790EEE49E /* Pods-FlickStream.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickStream.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickStream/Pods-FlickStream.release.xcconfig"; sourceTree = "<group>"; };
 		B7C391668E6D7CDE23F2D0D0 /* Pods-FlickStreamTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickStreamTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickStreamTests/Pods-FlickStreamTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 			children = (
 				7C0B1CF81DA85D250085DC29 /* FlickStreamTests.swift */,
 				7C3F08F41DAFCB6400A290CC /* PhotoModelTest.swift */,
+				7C3F08F71DAFE64200A290CC /* ViewControllerTests.swift */,
 				7C0B1CFA1DA85D250085DC29 /* Info.plist */,
 			);
 			path = FlickStreamTests;
@@ -381,8 +385,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C3F08F91DAFE68D00A290CC /* ViewController.swift in Sources */,
 				7C3F08F61DAFD1B800A290CC /* PhotoModel.swift in Sources */,
 				7C3F08F51DAFCB6400A290CC /* PhotoModelTest.swift in Sources */,
+				7C3F08F81DAFE64200A290CC /* ViewControllerTests.swift in Sources */,
 				7C0B1CF91DA85D250085DC29 /* FlickStreamTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -40,49 +40,62 @@ class ViewController: UIViewController   {
     
     @IBAction func getResults(){
         //if user search is empty, clear the results, otherwise
-        if userSearchField.text!.isEmpty {
-            self.clearResults()
-        }else{
-            //escape the characters needed
-            let username = userSearchField.text!.addingPercentEncoding(withAllowedCharacters:  expectedCharSet)!
-            
-            // TODO: better constructor for the url components. quick and dirty
-            let urlString = "https://api.flickr.com/services/rest/?method=flickr.people.findByUsername" + "&api_key=\(Secrets.apiKey())&username=\(username)&format=json&nojsoncallback=1"
-            let url = URL(string: urlString)!
-            let request = URLRequest(url: url)
-            
-            //if one exists already, cancel it and release it before we create a new one.
-            if dataTask != nil{
-                dataTask?.cancel()
-                dataTask = nil
-            }
-            
-            //create the datatask
-            dataTask = defaultSession.dataTask(with: request, completionHandler: {
-                (data, response, error) in
+        let userSearchText  = userSearchField?.text ?? ""
+            if (userSearchText.isEmpty) {
+                self.clearResults()
+            }else{
+                //escape the characters needed
+                let username = userSearchText.addingPercentEncoding(withAllowedCharacters:  expectedCharSet)
                 
-                if let data = data,
-                    let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
-                    if let userResponse = IDResponse(json: json!){
-                        if userResponse.status == .ok{
-                            print("good response:\(userResponse)")
-                            //move to a new func for next flickr call
-                            self.getPublicPhotos(userid: userResponse.id!)
-                        }else{
-                            //response errors here
-                            DispatchQueue.main.async{
-                                self.sendMessage(content: userResponse.message!)
-                                print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
+                // TODO: better constructor for the url components. quick and dirty
+                let urlString = "https://api.flickr.com/services/rest/?method=flickr.people.findByUsername" + "&api_key=\(Secrets.apiKey())&username=\(username)&format=json&nojsoncallback=1"
+                
+                guard let url = URL(string: urlString)
+                    else{
+                        self.sendMessage(content: "couldn't create a url from the username!")
+                        return
+                }
+                let request = URLRequest(url: url)
+                
+                //if one exists already, cancel it and release it before we create a new one.
+                if dataTask != nil{
+                    dataTask?.cancel()
+                    dataTask = nil
+                }
+                
+                //create the datatask
+                dataTask = defaultSession.dataTask(with: request, completionHandler: {
+                    (data, response, error) in
+                    
+                    if let data = data{
+//                        let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                        
+                        if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                            //get rid of the forced unwrapping to fail more gracefully
+                        if let userResponse = IDResponse(json: json) {
+                            if userResponse.status == .ok{
+                                print("good response:\(userResponse)")
+                                //move to a new func for next flickr call
+                                self.getPublicPhotos(userid: userResponse.id!)
+                            }else{
+                                //response errors here
+                                DispatchQueue.main.async{
+                                    self.sendMessage(content: userResponse.message!)
+                                    print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
+                                }
                             }
+                            
+                            }
+                    } else {
+                        //json parsing errors here
+                        print(error?.localizedDescription)
                         }
                     }
-                } else {
-                    //json parsing errors here
-                    print(error?.localizedDescription)
-                }
-            })
-            dataTask?.resume() //kick off the task
-        }
+                })
+                dataTask?.resume() //kick off the task
+                
+            }
+        
     }
     
     func getPublicPhotos(userid:String){

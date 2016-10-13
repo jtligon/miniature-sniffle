@@ -52,18 +52,18 @@ struct IDResponse: Any {
 }
 
 extension IDResponse {
-    init?(json:[String:Any]){
-        guard let userNameJson = json["user"] as? [String:Any],
+    init?(json:[String:Any]?){
+        guard let userNameJson = json?["user"] as? [String:Any],
             let id = userNameJson["id"] as? String,
             let nsid = userNameJson["nsid"] as? String
             else{
-                guard  let code = json["code"] as? Int,
-                    let message = json["message"] as? String
+                guard  let code = json?["code"] as? Int,
+                    let message = json?["message"] as? String
                     else{
                         return nil
                 }
                 
-                let statusText = json["stat"] as! String
+                let statusText = json?["stat"] as? String ?? ""
                 self.status = Status(rawValue: statusText)!
                 self.code = code
                 self.message = message
@@ -72,7 +72,7 @@ extension IDResponse {
                 return
         }
         
-        let statusText = json["stat"] as! String
+        let statusText = json?["stat"] as? String ?? ""
         self.status = Status(rawValue: statusText)!
         self.id = id
         self.nsid = nsid

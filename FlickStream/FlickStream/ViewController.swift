@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController   {
     
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet var messageLabel: UILabel!
     @IBOutlet var collectionView:UICollectionView?
     @IBOutlet var userSearchField:UITextField!
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
@@ -27,12 +27,12 @@ class ViewController: UIViewController   {
         self.collectionView?.layer.cornerRadius = 10
         
         //give the search field focus when we land on this viewController.
-        userSearchField.becomeFirstResponder()
+        self.userSearchField.becomeFirstResponder()
     }
     
     @IBAction func clearResults(){
         
-        print("clearing results")
+        dump("clearing results")
         self.imageUrls = [];
         self.userSearchField.text = ""
         self.collectionView?.reloadData()
@@ -68,20 +68,20 @@ class ViewController: UIViewController   {
                             //get rid of the forced unwrapping to fail more gracefully
                             if let userResponse = IDResponse(json: json) {
                                 if userResponse.status == .ok{
-                                    print("good response:\(userResponse)")
+                                    dump("good response:\(userResponse)")
                                     //move to a new func for next flickr call
                                     self.getPublicPhotos(userid: userResponse.id!)
                                 }else{
                                     //response errors here
                                     DispatchQueue.main.async{
                                         self.sendMessage(content: userResponse.message!)
-                                        print("got error code:\(userResponse.code) - Message:\(userResponse.message)")
+                                        dump("got error code:\(userResponse.code) - Message:\(userResponse.message)")
                                     }
                                 }
                             }
                         } else {
                             //json parsing errors here
-                            print(error?.localizedDescription)
+                            dump(error?.localizedDescription)
                         }
                     }
                 })
@@ -116,7 +116,7 @@ class ViewController: UIViewController   {
                     }
                 }
             }else{
-                print(error?.localizedDescription)
+                dump(error?.localizedDescription)
             }
         })
         dataTask?.resume()
